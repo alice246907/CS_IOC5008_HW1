@@ -1,11 +1,8 @@
 from dataset import img_dataset
-import torch.nn as nn
 import torch
 import argparse
-import torchvision
-import torch.optim as optim
 from os.path import join
-from model import Classifier_2, Classifier
+from model import Classifier
 import csv
 
 class_name = [
@@ -31,14 +28,11 @@ def test(config):
         dataset=dataset, batch_size=config.bs
     )
 
-    net = torchvision.models.resnet50(num_classes=13).cuda()
-    # net = torchvision.models.vgg19(num_classes=13).cuda()
-    # net = Classifier_2(num_classes=13).cuda()
+    net = Classifier(num_classes=13).cuda()
     net.load_state_dict(
         torch.load(
             join(
-                f"./weights/{config.model}/",
-                f"{config.test_epoch}_{config.model}.pth",
+                f"{config.weight_path}", f"{config.test_epoch}_classifier.pth"
             )
         )
     )
@@ -61,10 +55,13 @@ if __name__ == "__main__":
         "--bs", default=1, type=int, help="training batch size"
     )
     parser.add_argument(
-        "--test_epoch", default=1500, type=int, help="testing epochs"
+        "--test_epoch", default=2800, type=int, help="testing epochs"
     )
     parser.add_argument(
-        "--model", default="resnet50_flip", type=str, help="testing model"
+        "--weight_path",
+        default="./weights/classifier/",
+        type=str,
+        help="testing model",
     )
     config = parser.parse_args()
     test(config)
