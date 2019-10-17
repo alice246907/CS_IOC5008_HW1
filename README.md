@@ -1,4 +1,4 @@
-# image Classification
+# image classification
 
 ### Dataset
 
