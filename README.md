@@ -1,4 +1,4 @@
-# gray images Classification
+# image Classification
 
 ### Dataset
 
