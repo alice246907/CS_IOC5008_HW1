@@ -2,7 +2,7 @@
 
 ### Dataset
 
-Donwload your dataset and change the path to your dataset in train.py and test.py
+    Donwload your dataset and change the path to your dataset in train.py and test.py
 
 ### Training
 
